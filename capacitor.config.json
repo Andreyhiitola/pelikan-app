@@ -1,0 +1,9 @@
+{
+  "appId": "com.pelikan.ala-kol",
+  "appName": "Пеликан Алаколь",
+  "webDir": "src",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "pelikan-app",
+  "version": "1.0.0",
+  "description": "Мобильное приложение базы отдыха Пеликан на Алаколе",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx cap copy",
+    "android": "npx cap open android",
+    "deploy": "npm run build && git add . && git commit -m 'deploy' && git push"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.0.0",
+    "@capacitor/cli": "^5.0.0",
+    "@capacitor/core": "^5.0.0"
+  },
+  "keywords": ["алаколь", "пеликан", "pwa"],
+  "author": "Pelikan Team",
+  "license": "MIT"
+}
