@@ -30,6 +30,7 @@ body {
     max-width: 100%;
     min-height: 100vh;
     position: relative;
+    padding-bottom: 80px;
 }
 
 /* Анимированный фон */
@@ -301,18 +302,6 @@ body {
     font-size: 13px;
 }
 
-.weather-source {
-    font-size: 10px;
-    opacity: 0.7;
-    margin-top: 5px;
-}
-
-.weather-offline {
-    font-size: 10px;
-    color: var(--accent);
-    margin-top: 5px;
-}
-
 .camera-preview {
     height: 80px;
     background: linear-gradient(135deg, #3E92CC 0%, #0A2463 100%);
@@ -323,62 +312,12 @@ body {
     color: white;
     font-weight: 600;
     margin-top: 5px;
-    cursor: pointer;
-}
-
-/* Специальные предложения */
-.offers-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    padding: 0 20px;
-    margin-bottom: 30px;
-}
-
-.offer-card {
-    background: white;
-    border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.offer-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--gradient);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 18px;
-}
-
-.offer-content h4 {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.offer-content p {
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 5px;
-}
-
-.offer-price {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--teal);
 }
 
 /* Активности */
 .activities-section {
     background: white;
-    margin: 0 20px 70px;
+    margin: 0 20px 30px;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -451,24 +390,6 @@ body {
     color: #6c757d;
 }
 
-.activity-description {
-    font-size: 11px;
-    color: #888;
-    margin-top: 4px;
-}
-
-.no-activities {
-    text-align: center;
-    padding: 30px;
-    color: #666;
-}
-
-.no-activities i {
-    font-size: 40px;
-    margin-bottom: 10px;
-    opacity: 0.5;
-}
-
 /* Нижняя навигация */
 .bottom-nav {
     display: flex;
@@ -478,11 +399,8 @@ body {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
-    position: fixed;
+    position: sticky;
     bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
 }
 
 .nav-item {
@@ -570,14 +488,31 @@ body {
     overflow: hidden;
     position: relative;
     border: 3px dashed var(--secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.qr-placeholder {
-    text-align: center;
-    color: #666;
+#qr-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.qr-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border: 3px solid var(--teal);
+    border-radius: 15px;
+    box-shadow: 0 0 0 1000px rgba(0,0,0,0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { border-color: var(--teal); }
+    50% { border-color: var(--gold); }
+    100% { border-color: var(--teal); }
 }
 
 .qr-result {
@@ -586,6 +521,16 @@ body {
     border-radius: 10px;
     margin-top: 15px;
     display: none;
+}
+
+.qr-result.success {
+    background: var(--teal);
+    color: white;
+}
+
+.qr-result.error {
+    background: var(--accent);
+    color: white;
 }
 
 .scan-button {
@@ -626,36 +571,6 @@ body {
     text-align: center;
 }
 
-/* Уведомления */
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--secondary);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 10px;
-    z-index: 10000;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    max-width: 300px;
-}
-
-.notification.error {
-    background: var(--accent);
-}
-
-.notification.success {
-    background: var(--teal);
-}
-
-.notification.warning {
-    background: var(--gold);
-    color: var(--dark);
-}
-
 /* Анимации */
 @keyframes fadeInUp {
     from {
@@ -677,24 +592,3 @@ body {
 .delay-3 { animation-delay: 0.3s; }
 .delay-4 { animation-delay: 0.4s; }
 .delay-5 { animation-delay: 0.5s; }
-
-/* Адаптивность */
-@media (max-width: 360px) {
-    .quick-actions {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    
-    .menu-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .action-icon {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .offers-grid {
-        grid-template-columns: 1fr;
-    }
-}
